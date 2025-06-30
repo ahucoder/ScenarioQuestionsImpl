@@ -1,5 +1,7 @@
 package service;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,6 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * 5. 添加碰撞检测和重试机制
  * 6. 性能优化（减少对象创建）
  */
+@Slf4j
 public class ShortLinkService {
     // Base62 字符集（优化为不可变数组）
     private static final char[] CHARSET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -220,21 +223,21 @@ public class ShortLinkService {
         String url1 = "https://www.example.com/long/path";
         String key1 = service.getShortLink(url1);
         String key2 = service.getShortLink(url1);
-        System.out.println("key1: " + key1 + "   key2: " + key2);
-        System.out.println("Same URL should have same key: " + key1.equals(key2));
+        log.info("key1: {}, key2: {}", key1, key2);
+        log.info("Same URL should have same key: {}", key1.equals(key2));
 
         // 测试不同URL
         String key3 = service.getShortLink("https://another.example.com/");
-        System.out.println("Different URLs have different keys: " + !key1.equals(key3));
+        log.info("Different URLs have different keys: {}", !key1.equals(key3));
 
         // 测试恢复功能
-        System.out.println("Restore result: " + url1.equals(service.restore(key1)));
+        log.info("Restore result: {}", url1.equals(service.restore(key1)));
 
         // 测试边界值
         try {
             service.getShortLink("");
         } catch (IllegalArgumentException e) {
-            System.out.println("Empty URL test passed");
+            log.info("Empty URL test passed");
         }
 
         // 性能测试
@@ -242,6 +245,6 @@ public class ShortLinkService {
         for (int i = 0; i < 100_000; i++) {
             service.getShortLink("https://test.url/" + i);
         }
-        System.out.println("Generated 100,000 links in " + (System.currentTimeMillis() - start) + "ms");
+        log.info("Generated 100,000 links in {}ms", (System.currentTimeMillis() - start));
     }
 }

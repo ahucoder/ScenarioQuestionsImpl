@@ -15,8 +15,11 @@
 
     <!-- 模块列表 -->
     <modules>
+        <module>common-service</module>
         <module>short-link-service</module>
         <module>custom-threadpool</module>
+        <module>netty-rpc</module>
+        <module>delay-schedule</module>
     </modules>
 
     <!-- 统一属性管理 -->
@@ -25,9 +28,13 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>3.2.0</spring-boot.version> <!-- 示例 -->
+        <spring-boot.version>3.2.0</spring-boot.version>
         <junit.version>5.10.1</junit.version>
         <guava.version>33.2.0-jre</guava.version>
+        <netty.version>4.1.119.Final</netty.version>
+        <sl4j.version>2.0.17</sl4j.version>
+        <logback.version>1.5.18</logback.version>
+        <logback.core>1.5.18</logback.core>
     </properties>
 
     <!-- 依赖管理（子模块继承） -->
@@ -47,7 +54,7 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.32</version>
-                <scope>provided</scope>
+<!--                <scope>provided</scope>-->
             </dependency>
 
             <dependency>
@@ -62,6 +69,37 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <!-- Netty -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+
+            <!-- SLF4J API -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${sl4j.version}</version>
+            </dependency>
+            <!-- Logback 实现 -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.core}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.louiscool</groupId>
+                <artifactId>common-service</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

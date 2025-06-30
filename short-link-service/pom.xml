@@ -12,42 +12,14 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.louiscool.shortlink</groupId>
     <artifactId>short-link-service</artifactId>
     <name>short-link-service</name>
     <packaging>jar</packaging> <!-- 可执行JAR -->
 
     <dependencies>
-        <!-- Spring Boot Web -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Spring Data Redis -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-
-        <!-- 测试依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.louiscool</groupId>
+            <artifactId>common-service</artifactId>
         </dependency>
     </dependencies>
 
